@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
-/* @relayHash b41b24bb5adc6e48dc3a1a3affe5557e */
+/* @relayHash 5eee4ec63ffd6ea976119d33f75f1b05 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -54,6 +54,7 @@ fragment ArtistInsightsAuctionResults_artist on Artist {
 }
 
 fragment AuctionResult_auctionResult on AuctionResult {
+  ...helpers_auctionResultHelpers
   currency
   dateText
   id
@@ -81,6 +82,16 @@ fragment AuctionResult_auctionResult on AuctionResult {
   }
   saleDate
   title
+}
+
+fragment helpers_auctionResultHelpers on AuctionResult {
+  currency
+  boughtIn
+  priceRealized {
+    display
+    cents
+  }
+  saleDate
 }
 */
 
@@ -289,6 +300,45 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
+                        "name": "boughtIn",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "AuctionResultPriceRealized",
+                        "kind": "LinkedField",
+                        "name": "priceRealized",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "display",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "cents",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "saleDate",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
                         "name": "dateText",
                         "storageKey": null
                       },
@@ -383,13 +433,6 @@ return {
                       {
                         "alias": null,
                         "args": null,
-                        "kind": "ScalarField",
-                        "name": "boughtIn",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
                         "concreteType": "AuctionLotPerformance",
                         "kind": "LinkedField",
                         "name": "performance",
@@ -403,38 +446,6 @@ return {
                             "storageKey": null
                           }
                         ],
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "AuctionResultPriceRealized",
-                        "kind": "LinkedField",
-                        "name": "priceRealized",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "display",
-                            "storageKey": null
-                          },
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "cents",
-                            "storageKey": null
-                          }
-                        ],
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "saleDate",
                         "storageKey": null
                       },
                       {
@@ -514,7 +525,7 @@ return {
     ]
   },
   "params": {
-    "id": "b41b24bb5adc6e48dc3a1a3affe5557e",
+    "id": "5eee4ec63ffd6ea976119d33f75f1b05",
     "metadata": {
       "relayTestingSelectionTypeInfo": {
         "artist": {
